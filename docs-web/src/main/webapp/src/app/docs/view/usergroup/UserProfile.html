@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5>用户资料</h5>
+                    <button class="btn btn-primary" ng-click="startChat()" ng-if="user && user.id">
+                        <i class="fa fa-comment"></i> 发送私信
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div class="row" ng-if="user">
+                        <div class="col-md-3">
+                            <img ng-src="{{user.avatar || 'assets/img/default-avatar.png'}}" class="img-fluid rounded-circle" alt="用户头像">
+                        </div>
+                        <div class="col-md-9">
+                            <h4>{{user.username}}</h4>
+                            <p><strong>邮箱：</strong>{{user.email}}</p>
+                            <p><strong>注册时间：</strong>{{user.createDate | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                        </div>
+                    </div>
+                    <div class="alert alert-info" ng-if="!user">
+                        正在加载用户信息...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

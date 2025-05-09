@@ -1,0 +1,29 @@
+{
+  "userrequest": {
+    "title": "用户注册请求",
+    "pending_requests": "待处理请求",
+    "username": "用户名",
+    "email": "电子邮箱",
+    "create_date": "请求日期",
+    "actions": "操作",
+    "accept": "接受",
+    "reject": "拒绝",
+    "no_requests": "没有待处理的请求",
+    "accept_title": "接受请求",
+    "accept_message": "确定要接受此请求吗？",
+    "reject_title": "拒绝请求",
+    "reject_message": "确定要拒绝此请求吗？"
+  },
+  "registerrequest": {
+    "title": "申请注册",
+    "form_title": "注册申请",
+    "username": "用户名",
+    "email": "电子邮箱",
+    "submit": "提交申请",
+    "success_title": "申请已提交",
+    "success_message": "您的注册申请已提交。管理员将尽快审核。",
+    "error_title": "错误",
+    "error_message": "提交申请时发生错误。",
+    "error_username_exists": "该用户名已被使用。"
+  }
+} 

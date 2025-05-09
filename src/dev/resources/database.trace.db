@@ -1,0 +1,60 @@
+2025-05-09 10:35:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CONFIG" not found; SQL statement:
+select c.CFG_VALUE_C from T_CONFIG c where c.CFG_ID_C='DB_VERSION' [42102-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    CREATE TABLE T_USER_REQUEST (
+         [*]"; expected "identifier"; SQL statement:
+
+    create table T_USER_REQUEST (
+         [42001-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_ID_C[*] VARCHAR(36) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_ID_C varchar(36) not null, [42001-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_USERNAME_C[*] VARCHAR(50) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_USERNAME_C varchar(50) not null, [42001-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_EMAIL_C[*] VARCHAR(100) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_EMAIL_C varchar(100) not null, [42001-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_PASSWORD_C[*] VARCHAR(100) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_PASSWORD_C varchar(100) not null, [42001-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_STATUS_C[*] VARCHAR(1) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_STATUS_C varchar(1) not null, [42001-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_CREATEDATE_D[*] DATETIME NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_CREATEDATE_D datetime not null, [42001-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_PROCESSDATE_D[*] DATETIME, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_PROCESSDATE_D datetime, [42001-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_PROCESSUSERID_C[*] VARCHAR(36), "; expected "UPDATE, USE"; SQL statement:
+
+        URE_PROCESSUSERID_C varchar(36), [42001-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        PRIMARY[*] KEY (URE_ID_C) "; SQL statement:
+
+        primary key (URE_ID_C) [42000-199]
+2025-05-09 10:35:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    )[*];"; SQL statement:
+
+    ); [42000-199]

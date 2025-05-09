@@ -1,0 +1,78 @@
+<style>
+  /* No navbar in login screen */
+  .navbar {
+    display: none;
+  }
+
+  /* Absolute positionned footer on top of the login background */
+  .footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    .footer {
+      width: 50%;
+    }
+  }
+
+  /* Smaller links everywhere on login */
+  a {
+    font-size: 90%;
+    color: #666;
+  }
+</style>
+<div class="row vertical-center">
+  <div class="col-sm-6 col-xs-12 login-box">
+    <div class="row">
+      <div class="col-lg-offset-4 col-lg-4 col-xs-offset-1 col-xs-10">
+        <img src="img/title.png" class="img-responsive" />
+
+        <form ng-submit="submit()">
+          <div class="form-group">
+            <label class="sr-only" for="username">Usernames</label>
+            <input class="form-control" type="text" id="username" name="username"
+                   placeholder="Usernames" ng-model="userRequest.username" required />
+          </div>
+
+          <div class="form-group">
+            <label class="sr-only" for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email"
+                   placeholder="Email" ng-model="userRequest.email" required />
+          </div>
+
+          <div class="form-group">
+            <label class="sr-only" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="password"
+                   placeholder="Password" ng-model="userRequest.password" required />
+          </div>
+
+          <div class="form-group">
+            <label class="sr-only" for="passwordConfirm">Confirm Password</label>
+            <input class="form-control" type="password" id="passwordConfirm" name="passwordConfirm"
+                   placeholder="Confirm Password" ng-model="userRequest.passwordConfirm" required />
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-primary">
+                <span class="fas fa-check"></span> Submit Request
+              </button>
+            </div>
+          </div>
+
+          <div class="text-center" style="margin-top: 20px;">
+            <a href="#/login" class="btn btn-link">
+              <span class="fas fa-arrow-left"></span> Back to Login
+            </a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-img-container col-sm-6 hidden-xs"></div>
+</div> 

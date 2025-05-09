@@ -1,0 +1,50 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h2>聊天用户列表</h2>
+            
+            <!-- 搜索框 -->
+            <div class="form-group mb-3">
+                <input type="text" class="form-control" ng-model="searchUser" placeholder="搜索用户...">
+            </div>
+
+            <!-- 加载提示 -->
+            <div class="alert alert-info" ng-if="loading">
+                <i class="fa fa-spinner fa-spin"></i> 正在加载用户列表...
+            </div>
+
+            <!-- 错误提示 -->
+            <div class="alert alert-danger" ng-if="error">
+                {{error}}
+            </div>
+
+            <!-- 用户列表 -->
+            <div class="table-responsive" ng-if="!loading && !error">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>用户名</th>
+                            <th>邮箱</th>
+                            <th>注册时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in users | filter:searchUser">
+                            <td>
+                                <a ui-sref="chat.with({userId: user.username})">{{user.username}}</a>
+                            </td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.creationDate | date:'yyyy-MM-dd HH:mm'}}</td>
+                            <td>
+                                <button class="btn btn-primary btn-sm" ng-click="startChat(user.username)">
+                                    <i class="fa fa-comments"></i> 开始聊天
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 

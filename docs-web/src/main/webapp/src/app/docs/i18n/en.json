@@ -1,0 +1,33 @@
+{
+  "userrequest": {
+    "title": "User Requests",
+    "pending_requests": "Pending Requests",
+    "username": "Username",
+    "email": "Email",
+    "create_date": "Request Date",
+    "actions": "Actions",
+    "accept": "Accept",
+    "reject": "Reject",
+    "no_requests": "No pending requests",
+    "accept_title": "Accept Request",
+    "accept_message": "Are you sure you want to accept this request?",
+    "reject_title": "Reject Request",
+    "reject_message": "Are you sure you want to reject this request?"
+  },
+  "registerrequest": {
+    "title": "Registration Request",
+    "form_title": "Registration Form",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "password_confirm": "Confirm Password",
+    "submit": "Submit Request",
+    "success_title": "Request Submitted",
+    "success_message": "Your registration request has been submitted. An administrator will review it shortly.",
+    "error_title": "Error",
+    "error_message": "An error occurred while submitting your request.",
+    "error_username_exists": "This username is already taken.",
+    "error_password_length": "Password must be at least 8 characters long.",
+    "error_password_mismatch": "Passwords do not match."
+  }
+} 

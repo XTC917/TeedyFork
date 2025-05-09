@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>{{ 'userrequest.title' | translate }}</h1>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ 'userrequest.pending_requests' | translate }}</h3>
+        </div>
+        <div class="panel-body">
+          <div ng-if="!requests || requests.length === 0" class="text-center">
+            {{ 'userrequest.no_requests' | translate }}
+          </div>
+          
+          <table class="table table-hover" ng-if="requests && requests.length > 0">
+            <thead>
+              <tr>
+                <th>{{ 'userrequest.username' | translate }}</th>
+                <th>{{ 'userrequest.email' | translate }}</th>
+                <th>{{ 'userrequest.create_date' | translate }}</th>
+                <th>{{ 'userrequest.actions' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="request in requests">
+                <td>{{ request.username }}</td>
+                <td>{{ request.email }}</td>
+                <td>{{ request.create_date | date }}</td>
+                <td>
+                  <button class="btn btn-success btn-sm" ng-click="processRequest(request.id, 'accept')">
+                    {{ 'userrequest.accept' | translate }}
+                  </button>
+                  <button class="btn btn-danger btn-sm" ng-click="processRequest(request.id, 'reject')">
+                    {{ 'userrequest.reject' | translate }}
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

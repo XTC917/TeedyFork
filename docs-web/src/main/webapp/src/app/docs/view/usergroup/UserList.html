@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>用户列表</h5>
+                </div>
+                <div class="card-body">
+                    <!-- 加载中提示 -->
+                    <div class="alert alert-info" ng-if="loading">
+                        <i class="fa fa-spinner fa-spin"></i> 正在加载用户列表...
+                    </div>
+
+                    <!-- 错误提示 -->
+                    <div class="alert alert-danger" ng-if="error">
+                        {{error}}
+                    </div>
+
+                    <!-- 用户列表 -->
+                    <div class="table-responsive" ng-if="!loading && !error">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>邮箱</th>
+                                    <th>注册时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="user in users">
+                                    <td>
+                                        <a ui-sref="user({username: user.username})">{{user.username}}</a>
+                                    </td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.createDate | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary" ng-click="startChat(user)">
+                                            <i class="fa fa-comment"></i> 发送私信
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 启用注解 -->
+    <context:annotation-config/>
+    <context:component-scan base-package="com.sismics.docs.core"/>
+
+    <!-- 启用事务管理 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <!-- 配置WebSocket消息模板 -->
+    <bean id="messagingTemplate" class="org.springframework.messaging.simp.SimpMessagingTemplate">
+        <constructor-arg ref="brokerChannel"/>
+    </bean>
+
+    <bean id="brokerChannel" class="org.springframework.messaging.support.ExecutorSubscribableChannel">
+        <constructor-arg ref="brokerChannelExecutor"/>
+    </bean>
+
+    <bean id="brokerChannelExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="1"/>
+        <property name="maxPoolSize" value="1"/>
+        <property name="queueCapacity" value="100"/>
+    </bean>
+
+</beans> 

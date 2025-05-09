@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>{{ 'userrequest.title' | translate }}</h1>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ 'userrequest.pending_requests' | translate }}</h3>
+        </div>
+        <div class="panel-body">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>{{ 'userrequest.username' | translate }}</th>
+                <th>{{ 'userrequest.email' | translate }}</th>
+                <th>{{ 'userrequest.create_date' | translate }}</th>
+                <th>{{ 'userrequest.actions' | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="request in requests">
+                <td>{{ request.username }}</td>
+                <td>{{ request.email }}</td>
+                <td>{{ request.create_date | date:'medium' }}</td>
+                <td>
+                  <button class="btn btn-success btn-xs" ng-click="accept(request)">
+                    <i class="fa fa-check"></i> {{ 'userrequest.accept' | translate }}
+                  </button>
+                  <button class="btn btn-danger btn-xs" ng-click="reject(request)">
+                    <i class="fa fa-times"></i> {{ 'userrequest.reject' | translate }}
+                  </button>
+                </td>
+              </tr>
+              <tr ng-if="!requests || requests.length === 0">
+                <td colspan="4" class="text-center">{{ 'userrequest.no_requests' | translate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
