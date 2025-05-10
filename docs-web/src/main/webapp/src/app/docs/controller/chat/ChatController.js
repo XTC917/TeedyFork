@@ -1,110 +1,167 @@
 'use strict';
 
-angular.module('docs').controller('ChatController', function($scope, $stateParams, Restangular, $timeout) {
+angular.module('docs').controller('ChatController', function($scope, $stateParams, Restangular, $timeout, $interval, $state) {
     console.log('ChatController initialized with userId:', $stateParams.userId);
     
     $scope.currentUser = null;
     $scope.targetUser = null;
     $scope.messages = [];
     $scope.newMessage = '';
+    $scope.error = null;
+    let messagePollingInterval = null;
 
-    // 滚动到底部
-    function scrollToBottom() {
-        $timeout(function() {
-            var chatMessages = document.getElementById('chatMessages');
-            if (chatMessages) {
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+    // 检查认证状态
+    function checkAuth() {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.startsWith('auth_token=')) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 加载用户信息
+    function loadCurrentUser() {
+        if (!checkAuth()) {
+            console.log('No auth token found, redirecting to login');
+            $state.go('login', {
+                redirectState: 'chat.with',
+                redirectParams: JSON.stringify({ userId: $stateParams.userId })
+            });
+            return;
+        }
+
+        console.log('Attempting to load current user...');
+        // 使用正确的API路径获取当前用户
+        Restangular.one('user/list').get({ sort_column: 1, asc: true }).then(
+            function(response) {
+                console.log('User list loaded:', response);
+                // 假设第一个用户是当前用户
+                if (response.users && response.users.length > 0) {
+                    $scope.currentUser = response.users[0];
+                    console.log('Current user loaded successfully:', $scope.currentUser);
+                    loadTargetUser();
+                } else {
+                    $scope.error = '无法获取当前用户信息';
+                }
+            },
+            function(error) {
+                console.error('Error loading current user:', error);
+                console.log('Error status:', error.status);
+                console.log('Error data:', error.data);
+                
+                if (error.status === 401 || error.status === 403) {
+                    console.log('Authentication error, redirecting to login');
+                    $state.go('login', {
+                        redirectState: 'chat.with',
+                        redirectParams: JSON.stringify({ userId: $stateParams.userId })
+                    });
+                } else {
+                    $scope.error = '加载用户信息失败，请刷新页面重试';
+                }
+            }
+        );
+    }
+
+    // 加载目标用户信息
+    function loadTargetUser() {
+        console.log('Loading target user:', $stateParams.userId);
+        Restangular.one('user/list').get({ sort_column: 1, asc: true }).then(
+            function(response) {
+                console.log('User list loaded:', response);
+                // 在用户列表中查找目标用户
+                const targetUser = response.users.find(user => user.username === $stateParams.userId);
+                if (targetUser) {
+                    console.log('Target user loaded successfully:', targetUser);
+                    $scope.targetUser = targetUser;
+                    startMessagePolling();
+                } else {
+                    $scope.error = '目标用户不存在';
+                }
+            },
+            function(error) {
+                console.error('Error loading target user:', error);
+                console.log('Error status:', error.status);
+                console.log('Error data:', error.data);
+                $scope.error = '加载目标用户信息失败';
+            }
+        );
+    }
+
+    // 开始轮询消息
+    function startMessagePolling() {
+        console.log('Starting message polling...');
+        // 立即加载一次消息
+        loadMessages();
+        
+        // 每3秒轮询一次新消息
+        messagePollingInterval = $interval(loadMessages, 3000);
+        
+        // 当控制器销毁时停止轮询
+        $scope.$on('$destroy', function() {
+            if (messagePollingInterval) {
+                $interval.cancel(messagePollingInterval);
             }
         });
     }
 
-    // 获取当前用户信息
-    Restangular.one('user', 'me').get().then(function(user) {
-        console.log('Current user loaded:', user);
-        $scope.currentUser = user;
-    }, function(error) {
-        console.error('Error loading current user:', error);
-    });
-
-    // 获取目标用户信息
-    Restangular.one('user', $stateParams.userId).get().then(function(user) {
-        console.log('Target user loaded:', user);
-        $scope.targetUser = user;
-        loadMessages();
-    }, function(error) {
-        console.error('Error loading target user:', error);
-    });
-
-    // 加载历史消息
+    // 加载消息
     function loadMessages() {
-        console.log('Loading messages for user:', $stateParams.userId);
-        Restangular.one('chat/messages', $stateParams.userId).get().then(function(response) {
-            console.log('Messages loaded:', response);
-            if (Array.isArray(response)) {
-                $scope.messages = response;
-            } else if (response.messages) {
-                $scope.messages = response.messages;
-            } else {
-                $scope.messages = [];
+        if (!$scope.currentUser || !$scope.targetUser) {
+            console.log('Cannot load messages: user information not complete');
+            return;
+        }
+        
+        console.log('Loading messages for user:', $scope.currentUser.username);
+        Restangular.one('chat').one('messages', $scope.currentUser.username).get().then(
+            function(messages) {
+                console.log('Messages loaded successfully:', messages);
+                $scope.messages = messages;
+                $scope.error = null;
+            },
+            function(error) {
+                console.error('Error loading messages:', error);
+                console.log('Error status:', error.status);
+                console.log('Error data:', error.data);
+                $scope.error = '加载消息失败，请刷新页面重试';
             }
-            scrollToBottom();
-        }, function(error) {
-            console.error('Error loading messages:', error);
-            $scope.messages = [];
-        });
+        );
     }
 
     // 发送消息
     $scope.sendMessage = function() {
         if (!$scope.newMessage.trim()) return;
-
-        var messageContent = $scope.newMessage.trim();
-        console.log('Attempting to send message:', {
-            to: $stateParams.userId,
-            content: messageContent,
-            currentUser: $scope.currentUser
-        });
-
-        // 创建临时消息对象
-        var tempMessage = {
-            content: messageContent,
-            senderUsername: $scope.currentUser ? $scope.currentUser.username : 'unknown',
-            timestamp: new Date().toISOString()
+        if (!$scope.currentUser || !$scope.targetUser) {
+            $scope.error = '用户信息未加载完成，请稍后重试';
+            return;
+        }
+        
+        console.log('Sending message to:', $scope.targetUser.username);
+        const messageData = {
+            senderId: $scope.currentUser.username,
+            receiverId: $scope.targetUser.username,
+            content: $scope.newMessage
         };
-
-        // 立即显示消息
-        $scope.messages.push(tempMessage);
-        scrollToBottom();
-
-        // 清空输入框
-        $scope.newMessage = '';
-
-        // 发送到服务器
-        var messageData = {
-            receiverUsername: $stateParams.userId,
-            content: messageContent
-        };
-
-        console.log('Sending message data:', messageData);
-
-        Restangular.all('chat/send').post(messageData)
-            .then(function(response) {
+        
+        Restangular.all('chat/send').post(messageData).then(
+            function(response) {
                 console.log('Message sent successfully:', response);
-                // 重新加载消息以确保消息状态正确
-                loadMessages();
-            })
-            .catch(function(error) {
+                $scope.newMessage = '';
+                $scope.error = null;
+                loadMessages(); // 立即刷新消息列表
+            },
+            function(error) {
                 console.error('Error sending message:', error);
-                // 如果发送失败，从消息列表中移除临时消息
-                var index = $scope.messages.indexOf(tempMessage);
-                if (index > -1) {
-                    $scope.messages.splice(index, 1);
-                }
-                alert('发送消息失败: ' + (error.data ? error.data.message : '未知错误'));
-            });
+                console.log('Error status:', error.status);
+                console.log('Error data:', error.data);
+                $scope.error = '发送消息失败，请重试';
+            }
+        );
     };
 
-    // 按回车发送消息
+    // 处理回车键发送
     $scope.onKeyPress = function(event) {
         if (event.keyCode === 13 && !event.shiftKey) {
             event.preventDefault();
@@ -112,23 +169,6 @@ angular.module('docs').controller('ChatController', function($scope, $stateParam
         }
     };
 
-    // 监听消息数组变化
-    $scope.$watch('messages', function() {
-        scrollToBottom();
-    }, true);
-
-    // 定期刷新消息
-    var messageRefreshInterval = $timeout(function refreshMessages() {
-        if ($scope.currentUser && $scope.targetUser) {
-            loadMessages();
-        }
-        messageRefreshInterval = $timeout(refreshMessages, 5000); // 每5秒刷新一次
-    }, 5000);
-
-    // 清理定时器
-    $scope.$on('$destroy', function() {
-        if (messageRefreshInterval) {
-            $timeout.cancel(messageRefreshInterval);
-        }
-    });
+    // 初始化时加载当前用户
+    loadCurrentUser();
 }); 

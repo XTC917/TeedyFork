@@ -13,6 +13,17 @@
     <listener-class>com.sismics.util.listener.IIOProviderContextListener</listener-class>
   </listener>
 
+  <!-- Spring WebSocket Context Listener -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- Spring WebSocket Context Configuration -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:websocket-config.xml</param-value>
+  </context-param>
+
   <!-- This filter handles CORS -->
   <filter>
     <filter-name>corsFilter</filter-name>

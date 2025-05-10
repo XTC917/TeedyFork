@@ -470,6 +470,39 @@ angular.module('docs',
 
   // Configuring Restangular
   RestangularProvider.setBaseUrl('../api');
+  
+  // Add authentication token to all requests
+  RestangularProvider.addFullRequestInterceptor(function(element, operation, path, url, headers, params, httpConfig) {
+    // 从cookie获取token
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      if (cookie.startsWith('auth_token=')) {
+        headers['X-Auth-Token'] = cookie.substring('auth_token='.length);
+        break;
+      }
+    }
+    
+    return {
+      element: element,
+      headers: headers,
+      params: params,
+      httpConfig: httpConfig
+    };
+  });
+
+  // Add response interceptor to handle authentication errors
+  RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+    if (response.status === 401 || response.status === 403) {
+      // 重定向到登录页面
+      var $state = angular.element(document.body).injector().get('$state');
+      $state.go('login', {
+        redirectState: $state.current.name,
+        redirectParams: JSON.stringify($state.params)
+      });
+    }
+    return data;
+  });
 
   // Configuring Angular Translate
   $translateProvider

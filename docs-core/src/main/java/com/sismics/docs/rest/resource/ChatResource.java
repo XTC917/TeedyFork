@@ -1,4 +1,4 @@
-package com.sismics.docs.core.controller;
+package com.sismics.docs.rest.resource;
 
 import com.sismics.docs.core.model.entity.ChatMessage;
 import com.sismics.docs.core.service.ChatService;
@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 @Path("/chat")
-public class ChatController {
+public class ChatResource {
 
     private final ChatService chatService;
 
-    public ChatController(ChatService chatService) {
+    public ChatResource(ChatService chatService) {
         this.chatService = chatService;
     }
 

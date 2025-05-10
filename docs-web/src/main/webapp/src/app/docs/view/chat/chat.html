@@ -1,51 +1,37 @@
-<div class="chat-container">
-    <!-- 聊天头部 -->
-    <div class="chat-header">
-        <h4>{{targetUser.username}}</h4>
-    </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Chat</title>
+</head>
+<body>
+    <div class="chat-container">
+        <!-- 错误提示 -->
+        <div class="alert alert-danger" ng-if="error" style="margin: 10px;">
+            {{error}}
+        </div>
 
-    <!-- 聊天消息区域 -->
-    <div class="chat-messages" id="chatMessages">
-        <div class="message-container" ng-repeat="message in messages">
-            <!-- 对方的消息 -->
-            <div class="message message-left" ng-if="message.senderUsername !== currentUser.username">
-                <div class="message-avatar">
-                    <i class="fa fa-user"></i>
-                </div>
-                <div class="message-content">
-                    <div class="message-text">{{message.content}}</div>
-                    <div class="message-time">{{message.timestamp | date:'HH:mm'}}</div>
-                </div>
-            </div>
-            <!-- 自己的消息 -->
-            <div class="message message-right" ng-if="message.senderUsername === currentUser.username">
-                <div class="message-content">
-                    <div class="message-text">{{message.content}}</div>
-                    <div class="message-time">{{message.timestamp | date:'HH:mm'}}</div>
-                </div>
-                <div class="message-avatar">
-                    <i class="fa fa-user"></i>
-                </div>
+        <!-- 聊天头部 -->
+        <div class="chat-header">
+            <h4>{{targetUser.username}}</h4>
+        </div>
+
+        <!-- 聊天消息区域 -->
+        <div class="chat-messages" id="chatMessages">
+            <div ng-repeat="message in messages" class="message" ng-class="{'message-sent': message.senderId === currentUser.username, 'message-received': message.senderId !== currentUser.username}">
+                <div class="message-content">{{message.content}}</div>
+                <div class="message-time">{{message.createDate | date:'short'}}</div>
             </div>
         </div>
-    </div>
 
-    <!-- 输入区域 -->
-    <div class="chat-input">
-        <div class="input-group">
-            <input type="text" 
-                   class="form-control" 
-                   ng-model="newMessage" 
-                   ng-keypress="onKeyPress($event)"
-                   placeholder="输入消息...">
-            <div class="input-group-append">
-                <button class="btn btn-primary" ng-click="sendMessage()">
-                    <i class="fa fa-paper-plane"></i> 发送
-                </button>
-            </div>
+        <!-- 输入区域 -->
+        <div class="chat-input">
+            <textarea ng-model="newMessage" ng-keypress="onKeyPress($event)" placeholder="Type a message..."></textarea>
+            <button ng-click="sendMessage()">Send</button>
         </div>
     </div>
-</div>
+</body>
+</html>
 
 <style>
 .chat-container {
@@ -68,53 +54,35 @@
     padding: 20px;
 }
 
-.message-container {
-    margin-bottom: 20px;
-}
-
 .message {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
     margin-bottom: 10px;
-}
-
-.message-left {
-    justify-content: flex-start;
-}
-
-.message-right {
-    justify-content: flex-end;
-}
-
-.message-avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 10px;
-}
-
-.message-content {
     max-width: 70%;
 }
 
-.message-text {
+.message-sent {
+    align-self: flex-end;
+}
+
+.message-received {
+    align-self: flex-start;
+}
+
+.message-content {
     padding: 10px 15px;
     border-radius: 15px;
     margin-bottom: 5px;
     word-wrap: break-word;
 }
 
-.message-left .message-text {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+.message-sent .message-content {
+    background-color: #95ec69;
 }
 
-.message-right .message-text {
-    background-color: #95ec69;
+.message-received .message-content {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
 }
 
 .message-time {
@@ -123,27 +91,54 @@
     margin-top: 5px;
 }
 
-.message-left .message-time {
-    text-align: left;
+.message-sent .message-time {
+    text-align: right;
 }
 
-.message-right .message-time {
-    text-align: right;
+.message-received .message-time {
+    text-align: left;
 }
 
 .chat-input {
     background-color: #fff;
     padding: 15px;
     border-top: 1px solid #e0e0e0;
+    display: flex;
+    gap: 10px;
 }
 
-.chat-input .form-control {
+.chat-input textarea {
+    flex: 1;
+    border: 1px solid #e0e0e0;
     border-radius: 20px;
     padding: 10px 20px;
+    resize: none;
+    height: 40px;
 }
 
-.chat-input .btn {
+.chat-input button {
+    border: none;
+    background-color: #007bff;
+    color: white;
     border-radius: 20px;
-    margin-left: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #0056b3;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 }
 </style> 
