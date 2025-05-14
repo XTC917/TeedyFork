@@ -48,9 +48,12 @@ public class PdfUtil {
      * @param metadata Add a page with metadata
      * @param margin Margins in millimeters
      * @param outputStream Output stream to write to, will be closed
+     * @param translate Whether to translate the content
+     * @param targetLanguage Target language for translation (e.g., "zh", "en")
      */
     public static void convertToPdf(DocumentDto documentDto, List<File> fileList,
-            boolean fitImageToPage, boolean metadata, int margin, OutputStream outputStream) throws Exception {
+            boolean fitImageToPage, boolean metadata, int margin, OutputStream outputStream,
+            boolean translate, String targetLanguage) throws Exception {
         // Setup PDFBox
         Closer closer = Closer.create();
         MemoryUsageSetting memUsageSettings = MemoryUsageSetting.setupMixed(1000000); // 1MB max memory usage
@@ -64,15 +67,34 @@ public class PdfUtil {
                 doc.addPage(page);
                 try (PdfPage pdfPage = new PdfPage(doc, page, margin * Constants.MM_PER_INCH, DocsPDType1Font.HELVETICA, 12)) {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    pdfPage.addText(documentDto.getTitle(), true, DocsPDType1Font.HELVETICA_BOLD, 16)
-                        .newLine()
-                        .addText("Created by " + documentDto.getCreator()
-                            + " on " + dateFormat.format(new Date(documentDto.getCreateTimestamp())), true)
-                        .newLine()
-                        .addText(documentDto.getDescription())
+                    String title = documentDto.getTitle();
+                    if (translate) {
+                        title = TranslationService.getInstance().translateText(title, documentDto.getLanguage(), targetLanguage);
+                    }
+                    pdfPage.addText(title, true, DocsPDType1Font.HELVETICA_BOLD, 16)
                         .newLine();
+                    
+                    String creator = documentDto.getCreator();
+                    if (translate) {
+                        creator = TranslationService.getInstance().translateText(creator, documentDto.getLanguage(), targetLanguage);
+                    }
+                    pdfPage.addText("Created by " + creator
+                        + " on " + dateFormat.format(new Date(documentDto.getCreateTimestamp())), true)
+                        .newLine();
+                    
+                    String description = documentDto.getDescription();
+                    if (translate) {
+                        description = TranslationService.getInstance().translateText(description, documentDto.getLanguage(), targetLanguage);
+                    }
+                    pdfPage.addText(description)
+                        .newLine();
+                    
                     if (!Strings.isNullOrEmpty(documentDto.getSubject())) {
-                        pdfPage.addText("Subject: " + documentDto.getSubject());
+                        String subject = documentDto.getSubject();
+                        if (translate) {
+                            subject = TranslationService.getInstance().translateText(subject, documentDto.getLanguage(), targetLanguage);
+                        }
+                        pdfPage.addText("Subject: " + subject);
                     }
                     if (!Strings.isNullOrEmpty(documentDto.getIdentifier())) {
                         pdfPage.addText("Identifier: " + documentDto.getIdentifier());
@@ -95,7 +117,7 @@ public class PdfUtil {
                     if (!Strings.isNullOrEmpty(documentDto.getRights())) {
                         pdfPage.addText("Rights: " + documentDto.getRights());
                     }
-                    pdfPage.addText("Language: " + documentDto.getLanguage())
+                    pdfPage.addText("Language: " + (translate ? targetLanguage : documentDto.getLanguage()))
                         .newLine()
                         .addText("Files in this document : " + fileList.size(), false, DocsPDType1Font.HELVETICA_BOLD, 12);
                 }
@@ -109,6 +131,24 @@ public class PdfUtil {
                 Path unencryptedFile = EncryptionUtil.decryptFile(storedFile, file.getPrivateKey());
                 FormatHandler formatHandler = FormatHandlerUtil.find(file.getMimeType());
                 if (formatHandler != null) {
+                    // Extract text content
+                    String content = null;
+                    try {
+                        content = formatHandler.extractContent(documentDto.getLanguage(), unencryptedFile);
+                    } catch (Exception e) {
+                        // Ignore files that can't extract content
+                    }
+                    if (content != null && !content.trim().isEmpty() && translate) {
+                        // Translate content if translation is enabled
+                        content = TranslationService.getInstance().translateText(content, documentDto.getLanguage(), targetLanguage);
+                        // Add translated content to PDF
+                        PDPage page = new PDPage();
+                        doc.addPage(page);
+                        try (PdfPage pdfPage = new PdfPage(doc, page, margin * Constants.MM_PER_INCH, DocsPDType1Font.HELVETICA, 12)) {
+                            pdfPage.addText(content);
+                        }
+                    }
+                    // Continue with original logic
                     formatHandler.appendToPdf(unencryptedFile, doc, fitImageToPage, margin, memUsageSettings, closer);
                 }
             }

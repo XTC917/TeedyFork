@@ -10,11 +10,11 @@ public class ChatMessage {
     @Column(name = "MSG_ID_C", length = 36)
     private String id;
 
-    @Column(name = "MSG_SENDER_ID_C", length = 36, nullable = false)
-    private String senderId;
+    @Column(name = "MSG_SENDER_USERNAME_C", length = 50, nullable = false)
+    private String senderUsername;
 
-    @Column(name = "MSG_RECEIVER_ID_C", length = 36, nullable = false)
-    private String receiverId;
+    @Column(name = "MSG_RECEIVER_USERNAME_C", length = 50, nullable = false)
+    private String receiverUsername;
 
     @Column(name = "MSG_CONTENT_C", nullable = false)
     private String content;
@@ -35,20 +35,20 @@ public class ChatMessage {
         this.id = id;
     }
 
-    public String getSenderId() {
-        return senderId;
+    public String getSenderUsername() {
+        return senderUsername;
     }
 
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
+    public void setSenderUsername(String senderUsername) {
+        this.senderUsername = senderUsername;
     }
 
-    public String getReceiverId() {
-        return receiverId;
+    public String getReceiverUsername() {
+        return receiverUsername;
     }
 
-    public void setReceiverId(String receiverId) {
-        this.receiverId = receiverId;
+    public void setReceiverUsername(String receiverUsername) {
+        this.receiverUsername = receiverUsername;
     }
 
     public String getContent() {

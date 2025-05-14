@@ -65,5 +65,11 @@ public enum ConfigType {
     LDAP_BASE_DN,
     LDAP_FILTER,
     LDAP_DEFAULT_EMAIL,
-    LDAP_DEFAULT_STORAGE
+    LDAP_DEFAULT_STORAGE,
+
+    /**
+     * Tencent Cloud Translation API configuration.
+     */
+    TENCENT_SECRET_ID,
+    TENCENT_SECRET_KEY
 }

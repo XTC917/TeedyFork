@@ -61,6 +61,7 @@
     <org.apache.maven.plugins.maven-war-plugin.version>3.3.2</org.apache.maven.plugins.maven-war-plugin.version>
     <org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0</org.apache.maven.plugins.maven-surefire-plugin.version>
     <org.eclipse.jetty.jetty-maven-plugin.version>11.0.20</org.eclipse.jetty.jetty-maven-plugin.version>
+    <com.tencentcloudapi.version>3.1.1034</com.tencentcloudapi.version>
   </properties>
 
   <scm>
@@ -78,6 +79,11 @@
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
+    </repository>
+    <repository>
+      <id>tencent-cloud</id>
+      <name>Tencent Cloud Repository</name>
+      <url>https://mirrors.tencent.com/nexus/repository/maven-public/</url>
     </repository>
   </repositories>
 
@@ -486,6 +492,13 @@
         <groupId>com.levigo.jbig2</groupId>
         <artifactId>levigo-jbig2-imageio</artifactId>
         <version>${com.levigo.jbig2.levigo-jbig2-imageio.version}</version>
+      </dependency>
+
+      <!-- Tencent Cloud Translation SDK -->
+      <dependency>
+        <groupId>com.tencentcloudapi</groupId>
+        <artifactId>tencentcloud-sdk-java</artifactId>
+        <version>${com.tencentcloudapi.version}</version>
       </dependency>
 
     </dependencies>

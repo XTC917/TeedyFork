@@ -1,0 +1,40 @@
+<!-- Document detail page -->
+<div class="row">
+  <div class="col-md-12">
+    <div class="well well-3d">
+      <div class="btn-group pull-right">
+        <!-- Translate button -->
+        <button class="btn btn-default" ng-click="openTranslateModal()" uib-tooltip="{{ 'document.translate.title' | translate }}" tooltip-append-to-body="true">
+          <span class="fas fa-language"></span>
+        </button>
+        <!-- Export PDF button -->
+        <button class="btn btn-default" ng-click="openPdfModal()" uib-tooltip="{{ 'document.pdf.export_title' | translate }}" tooltip-append-to-body="true">
+          <span class="fas fa-file-pdf"></span>
+        </button>
+        <!-- Edit button -->
+        <button class="btn btn-default" ng-click="edit()" uib-tooltip="{{ 'document.edit' | translate }}" tooltip-append-to-body="true">
+          <span class="fas fa-edit"></span>
+        </button>
+        <!-- Delete button -->
+        <button class="btn btn-default" ng-click="delete()" uib-tooltip="{{ 'document.delete' | translate }}" tooltip-append-to-body="true">
+          <span class="fas fa-trash"></span>
+        </button>
+      </div>
+
+      <!-- Document title -->
+      <h2>{{ document.title }}</h2>
+
+      <!-- Document metadata -->
+      <div class="document-metadata">
+        <p ng-if="document.description">{{ document.description }}</p>
+        <p ng-if="document.subject"><strong>{{ 'document.subject' | translate }}:</strong> {{ document.subject }}</p>
+        <p ng-if="document.language"><strong>{{ 'document.language' | translate }}:</strong> {{ document.language }}</p>
+        <p ng-if="document.create_date"><strong>{{ 'document.create_date' | translate }}:</strong> {{ document.create_date | date:'medium' }}</p>
+        <p ng-if="document.update_date"><strong>{{ 'document.update_date' | translate }}:</strong> {{ document.update_date | date:'medium' }}</p>
+      </div>
+
+      <!-- Document content -->
+      <div class="document-content" ng-bind-html="document.content"></div>
+    </div>
+  </div>
+</div> 

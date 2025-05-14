@@ -2658,3 +2658,965 @@ org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
     )[*];"; SQL statement:
 
     ); [42000-199]
+2025-05-10 19:13:09 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "UK_AD4VB8AGCRNRMMGE2UDPKQV7V" not found; SQL statement:
+
+    alter table T_USER 
+       drop constraint UK_ad4vb8agcrnrmmge2udpkqv7v [90057-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:573)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.ddl.AlterTableDropConstraint.update(AlterTableDropConstraint.java:41)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
+	at org.h2.command.Command.executeUpdate(Command.java:267)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:574)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:514)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applyUniqueKeys(AbstractSchemaMigrator.java:401)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:98)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:232)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:295)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.sismics.util.jpa.EMF.<clinit>(EMF.java:55)
+	at com.sismics.docs.core.util.TransactionUtil.handle(TransactionUtil.java:37)
+	at com.sismics.util.filter.RequestContextFilter.init(RequestContextFilter.java:65)
+	at org.eclipse.jetty.servlet.FilterHolder.initialize(FilterHolder.java:133)
+	at org.eclipse.jetty.servlet.ServletHandler.lambda$initialize$2(ServletHandler.java:725)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1709)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:807)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:749)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:392)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1305)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:902)
+	at org.eclipse.jetty.servlet.ServletContextHandler.doStart(ServletContextHandler.java:306)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:533)
+	at org.eclipse.jetty.maven.plugin.MavenWebAppContext.doStart(MavenWebAppContext.java:294)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:121)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:121)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
+	at org.eclipse.jetty.server.Server.start(Server.java:470)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:415)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.maven.plugin.JettyEmbedder.doStart(JettyEmbedder.java:224)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.maven.plugin.JettyRunMojo.startJettyEmbedded(JettyRunMojo.java:97)
+	at org.eclipse.jetty.maven.plugin.AbstractWebAppMojo.startJetty(AbstractWebAppMojo.java:441)
+	at org.eclipse.jetty.maven.plugin.AbstractWebAppMojo.execute(AbstractWebAppMojo.java:419)
+	at org.eclipse.jetty.maven.plugin.JettyRunMojo.execute(JettyRunMojo.java:85)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:328)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute(MojoExecutor.java:316)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:174)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.access$000(MojoExecutor.java:75)
+	at org.apache.maven.lifecycle.internal.MojoExecutor$1.run(MojoExecutor.java:162)
+	at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute(DefaultMojosExecutionStrategy.java:39)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:73)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:53)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:118)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:261)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:906)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:283)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:206)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
+2025-05-10 19:13:09 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "USE_USERID_C" not found; SQL statement:
+
+    alter table T_USER 
+       add constraint UK_ad4vb8agcrnrmmge2udpkqv7v unique (USE_USERID_C) [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.table.Table.getColumn(Table.java:708)
+	at org.h2.table.IndexColumn.mapColumns(IndexColumn.java:115)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:168)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:133)
+	at org.h2.command.Command.executeUpdate(Command.java:267)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:233)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:205)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:574)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlStrings(AbstractSchemaMigrator.java:514)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applyUniqueKeys(AbstractSchemaMigrator.java:410)
+	at org.hibernate.tool.schema.internal.GroupedSchemaMigratorImpl.performTablesMigration(GroupedSchemaMigratorImpl.java:98)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.performMigration(AbstractSchemaMigrator.java:232)
+	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.doMigration(AbstractSchemaMigrator.java:117)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:286)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:145)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1430)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:142)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:295)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:450)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1507)
+	at org.hibernate.jpa.HibernatePersistenceProvider.createEntityManagerFactory(HibernatePersistenceProvider.java:55)
+	at jakarta.persistence.Persistence.createEntityManagerFactory(Persistence.java:80)
+	at com.sismics.util.jpa.EMF.<clinit>(EMF.java:55)
+	at com.sismics.docs.core.util.TransactionUtil.handle(TransactionUtil.java:37)
+	at com.sismics.util.filter.RequestContextFilter.init(RequestContextFilter.java:65)
+	at org.eclipse.jetty.servlet.FilterHolder.initialize(FilterHolder.java:133)
+	at org.eclipse.jetty.servlet.ServletHandler.lambda$initialize$2(ServletHandler.java:725)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1709)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:807)
+	at org.eclipse.jetty.servlet.ServletHandler.initialize(ServletHandler.java:749)
+	at org.eclipse.jetty.servlet.ServletContextHandler.startContext(ServletContextHandler.java:392)
+	at org.eclipse.jetty.webapp.WebAppContext.startContext(WebAppContext.java:1305)
+	at org.eclipse.jetty.server.handler.ContextHandler.doStart(ContextHandler.java:902)
+	at org.eclipse.jetty.servlet.ServletContextHandler.doStart(ServletContextHandler.java:306)
+	at org.eclipse.jetty.webapp.WebAppContext.doStart(WebAppContext.java:533)
+	at org.eclipse.jetty.maven.plugin.MavenWebAppContext.doStart(MavenWebAppContext.java:294)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:121)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:121)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.start(ContainerLifeCycle.java:171)
+	at org.eclipse.jetty.server.Server.start(Server.java:470)
+	at org.eclipse.jetty.util.component.ContainerLifeCycle.doStart(ContainerLifeCycle.java:114)
+	at org.eclipse.jetty.server.handler.AbstractHandler.doStart(AbstractHandler.java:89)
+	at org.eclipse.jetty.server.Server.doStart(Server.java:415)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.maven.plugin.JettyEmbedder.doStart(JettyEmbedder.java:224)
+	at org.eclipse.jetty.util.component.AbstractLifeCycle.start(AbstractLifeCycle.java:93)
+	at org.eclipse.jetty.maven.plugin.JettyRunMojo.startJettyEmbedded(JettyRunMojo.java:97)
+	at org.eclipse.jetty.maven.plugin.AbstractWebAppMojo.startJetty(AbstractWebAppMojo.java:441)
+	at org.eclipse.jetty.maven.plugin.AbstractWebAppMojo.execute(AbstractWebAppMojo.java:419)
+	at org.eclipse.jetty.maven.plugin.JettyRunMojo.execute(JettyRunMojo.java:85)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:328)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute(MojoExecutor.java:316)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:174)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.access$000(MojoExecutor.java:75)
+	at org.apache.maven.lifecycle.internal.MojoExecutor$1.run(MojoExecutor.java:162)
+	at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute(DefaultMojosExecutionStrategy.java:39)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:73)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:53)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:118)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:261)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:906)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:283)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:206)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
+2025-05-10 19:13:18 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "U1_0.USE_USERID_C" not found; SQL statement:
+select u1_0.USE_ID_C,u1_0.USE_CREATEDATE_D,u1_0.USE_DELETEDATE_D,u1_0.USE_DISABLEDATE_D,u1_0.USE_EMAIL_C,u1_0.USE_ONBOARDING_B,u1_0.USE_PASSWORD_C,u1_0.USE_PRIVATEKEY_C,u1_0.USE_IDROLE_C,u1_0.USE_STORAGECURRENT_N,u1_0.USE_STORAGEQUOTA_N,u1_0.USE_TOTPKEY_C,u1_0.USE_USERID_C,u1_0.USE_USERNAME_C from T_USER u1_0 where u1_0.USE_ID_C=? [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.command.dml.Select.prepare(Select.java:1245)
+	at org.h2.command.Parser.prepareCommand(Parser.java:689)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:77)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:349)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:227)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:164)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:218)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:98)
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19)
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:66)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:186)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:361)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:145)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:117)
+	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:75)
+	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:3673)
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3662)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:591)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromCacheOrDatasource(DefaultLoadEventListener.java:577)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:547)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:531)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:206)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadWithRegularProxy(DefaultLoadEventListener.java:286)
+	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:241)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110)
+	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:67)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1234)
+	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1222)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:209)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:160)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:112)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2430)
+	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2396)
+	at com.sismics.docs.core.dao.UserDao.getById(UserDao.java:239)
+	at com.sismics.util.filter.TokenBasedSecurityFilter.authenticate(TokenBasedSecurityFilter.java:107)
+	at com.sismics.util.filter.SecurityFilter.doFilter(SecurityFilter.java:130)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at com.sismics.util.filter.RequestContextFilter.doFilter(RequestContextFilter.java:89)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at com.sismics.util.filter.CorsFilter.doFilter(CorsFilter.java:39)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:170)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:527)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:131)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:598)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:223)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerList.handle(HandlerList.java:51)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-10 19:13:18 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "U1_0.USE_USERID_C" not found; SQL statement:
+select u1_0.USE_ID_C,u1_0.USE_CREATEDATE_D,u1_0.USE_DELETEDATE_D,u1_0.USE_DISABLEDATE_D,u1_0.USE_EMAIL_C,u1_0.USE_ONBOARDING_B,u1_0.USE_PASSWORD_C,u1_0.USE_PRIVATEKEY_C,u1_0.USE_IDROLE_C,u1_0.USE_STORAGECURRENT_N,u1_0.USE_STORAGEQUOTA_N,u1_0.USE_TOTPKEY_C,u1_0.USE_USERID_C,u1_0.USE_USERNAME_C from T_USER u1_0 where u1_0.USE_ID_C=? [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.command.dml.Select.prepare(Select.java:1245)
+	at org.h2.command.Parser.prepareCommand(Parser.java:689)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:77)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:349)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:227)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:164)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:218)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:98)
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19)
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:66)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:186)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:361)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:145)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:117)
+	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:75)
+	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:3673)
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3662)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:591)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromCacheOrDatasource(DefaultLoadEventListener.java:577)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:547)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:531)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:206)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadWithRegularProxy(DefaultLoadEventListener.java:286)
+	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:241)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110)
+	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:67)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1234)
+	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1222)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:209)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:160)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:112)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2430)
+	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2396)
+	at com.sismics.docs.core.dao.UserDao.getById(UserDao.java:239)
+	at com.sismics.util.filter.TokenBasedSecurityFilter.authenticate(TokenBasedSecurityFilter.java:107)
+	at com.sismics.util.filter.SecurityFilter.doFilter(SecurityFilter.java:130)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at com.sismics.util.filter.RequestContextFilter.doFilter(RequestContextFilter.java:89)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at com.sismics.util.filter.CorsFilter.doFilter(CorsFilter.java:39)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:170)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:527)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:131)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:598)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:223)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerList.handle(HandlerList.java:51)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.runTask(AdaptiveExecutionStrategy.java:421)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.consumeTask(AdaptiveExecutionStrategy.java:390)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.tryProduce(AdaptiveExecutionStrategy.java:277)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.run(AdaptiveExecutionStrategy.java:199)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:411)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-10 19:13:18 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "U1_0.USE_USERID_C" not found; SQL statement:
+select u1_0.USE_ID_C,u1_0.USE_CREATEDATE_D,u1_0.USE_DELETEDATE_D,u1_0.USE_DISABLEDATE_D,u1_0.USE_EMAIL_C,u1_0.USE_ONBOARDING_B,u1_0.USE_PASSWORD_C,u1_0.USE_PRIVATEKEY_C,u1_0.USE_IDROLE_C,u1_0.USE_STORAGECURRENT_N,u1_0.USE_STORAGEQUOTA_N,u1_0.USE_TOTPKEY_C,u1_0.USE_USERID_C,u1_0.USE_USERNAME_C from T_USER u1_0 where u1_0.USE_ID_C=? [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.command.dml.Select.prepare(Select.java:1245)
+	at org.h2.command.Parser.prepareCommand(Parser.java:689)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:77)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:349)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:227)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:164)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:218)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:98)
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19)
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:66)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:186)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:361)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:145)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:117)
+	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:75)
+	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:3673)
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3662)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:591)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromCacheOrDatasource(DefaultLoadEventListener.java:577)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:547)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:531)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:206)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadWithRegularProxy(DefaultLoadEventListener.java:286)
+	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:241)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110)
+	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:67)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1234)
+	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1222)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:209)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:160)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:112)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2430)
+	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2396)
+	at com.sismics.docs.core.dao.UserDao.getById(UserDao.java:239)
+	at com.sismics.util.filter.TokenBasedSecurityFilter.authenticate(TokenBasedSecurityFilter.java:107)
+	at com.sismics.util.filter.SecurityFilter.doFilter(SecurityFilter.java:130)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at com.sismics.util.filter.RequestContextFilter.doFilter(RequestContextFilter.java:89)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at com.sismics.util.filter.CorsFilter.doFilter(CorsFilter.java:39)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:170)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:527)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:131)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:598)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:223)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerList.handle(HandlerList.java:51)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.runTask(AdaptiveExecutionStrategy.java:421)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.consumeTask(AdaptiveExecutionStrategy.java:390)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.tryProduce(AdaptiveExecutionStrategy.java:277)
+	at org.eclipse.jetty.util.thread.strategy.AdaptiveExecutionStrategy.produce(AdaptiveExecutionStrategy.java:193)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-10 19:13:18 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "U1_0.USE_USERID_C" not found; SQL statement:
+select u1_0.USE_ID_C,u1_0.USE_CREATEDATE_D,u1_0.USE_DELETEDATE_D,u1_0.USE_DISABLEDATE_D,u1_0.USE_EMAIL_C,u1_0.USE_ONBOARDING_B,u1_0.USE_PASSWORD_C,u1_0.USE_PRIVATEKEY_C,u1_0.USE_IDROLE_C,u1_0.USE_STORAGECURRENT_N,u1_0.USE_STORAGEQUOTA_N,u1_0.USE_TOTPKEY_C,u1_0.USE_USERID_C,u1_0.USE_USERNAME_C from T_USER u1_0 where u1_0.USE_ID_C=? [42122-199]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:451)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:427)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:176)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:158)
+	at org.h2.command.dml.Select.prepare(Select.java:1245)
+	at org.h2.command.Parser.prepareCommand(Parser.java:689)
+	at org.h2.engine.Session.prepareLocal(Session.java:627)
+	at org.h2.engine.Session.prepareCommand(Session.java:565)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1292)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:77)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:349)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$5.doPrepare(StatementPreparerImpl.java:150)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:177)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareQueryStatement(StatementPreparerImpl.java:152)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:102)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:227)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:164)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advanceNext(JdbcValuesResultSetImpl.java:218)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:98)
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:19)
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:66)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:186)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:33)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:361)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:168)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:93)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:145)
+	at org.hibernate.loader.ast.internal.SingleIdLoadPlan.load(SingleIdLoadPlan.java:117)
+	at org.hibernate.loader.ast.internal.SingleIdEntityLoaderStandardImpl.load(SingleIdEntityLoaderStandardImpl.java:75)
+	at org.hibernate.persister.entity.AbstractEntityPersister.doLoad(AbstractEntityPersister.java:3673)
+	at org.hibernate.persister.entity.AbstractEntityPersister.load(AbstractEntityPersister.java:3662)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromDatasource(DefaultLoadEventListener.java:591)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadFromCacheOrDatasource(DefaultLoadEventListener.java:577)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:547)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doLoad(DefaultLoadEventListener.java:531)
+	at org.hibernate.event.internal.DefaultLoadEventListener.load(DefaultLoadEventListener.java:206)
+	at org.hibernate.event.internal.DefaultLoadEventListener.loadWithRegularProxy(DefaultLoadEventListener.java:286)
+	at org.hibernate.event.internal.DefaultLoadEventListener.proxyOrLoad(DefaultLoadEventListener.java:241)
+	at org.hibernate.event.internal.DefaultLoadEventListener.doOnLoad(DefaultLoadEventListener.java:110)
+	at org.hibernate.event.internal.DefaultLoadEventListener.onLoad(DefaultLoadEventListener.java:67)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:138)
+	at org.hibernate.internal.SessionImpl.fireLoadNoChecks(SessionImpl.java:1234)
+	at org.hibernate.internal.SessionImpl.fireLoad(SessionImpl.java:1222)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:209)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.doLoad(IdentifierLoadAccessImpl.java:160)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.lambda$load$1(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.perform(IdentifierLoadAccessImpl.java:112)
+	at org.hibernate.loader.internal.IdentifierLoadAccessImpl.load(IdentifierLoadAccessImpl.java:149)
+	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2430)
+	at org.hibernate.internal.SessionImpl.find(SessionImpl.java:2396)
+	at com.sismics.docs.core.dao.UserDao.getById(UserDao.java:239)
+	at com.sismics.util.filter.TokenBasedSecurityFilter.authenticate(TokenBasedSecurityFilter.java:107)
+	at com.sismics.util.filter.SecurityFilter.doFilter(SecurityFilter.java:130)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at com.sismics.util.filter.RequestContextFilter.doFilter(RequestContextFilter.java:89)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at com.sismics.util.filter.CorsFilter.doFilter(CorsFilter.java:39)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at org.eclipse.jetty.websocket.servlet.WebSocketUpgradeFilter.doFilter(WebSocketUpgradeFilter.java:170)
+	at org.eclipse.jetty.servlet.FilterHolder.doFilter(FilterHolder.java:202)
+	at org.eclipse.jetty.servlet.ServletHandler$Chain.doFilter(ServletHandler.java:1635)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:527)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:131)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:598)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:223)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1580)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:221)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1381)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:176)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:484)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1553)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:174)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1303)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:129)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:149)
+	at org.eclipse.jetty.server.handler.HandlerList.handle(HandlerList.java:51)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:122)
+	at org.eclipse.jetty.server.Server.handle(Server.java:563)
+	at org.eclipse.jetty.server.HttpChannel$RequestDispatchable.dispatch(HttpChannel.java:1598)
+	at org.eclipse.jetty.server.HttpChannel.dispatch(HttpChannel.java:753)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:501)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:287)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:314)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:100)
+	at org.eclipse.jetty.io.SelectableChannelEndPoint$1.run(SelectableChannelEndPoint.java:53)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:969)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1194)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1149)
+	at java.base/java.lang.Thread.run(Thread.java:1575)
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CONFIG" not found; SQL statement:
+select c.CFG_VALUE_C from T_CONFIG c where c.CFG_ID_C='DB_VERSION' [42102-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    CREATE TABLE T_CHAT_MESSAGE (
+        [*]"; expected "identifier"; SQL statement:
+
+    CREATE TABLE T_CHAT_MESSAGE (
+         [42001-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_ID_C[*] VARCHAR(36) PRIMARY KEY,"; expected "MERGE"; SQL statement:
+
+        MSG_ID_C VARCHAR(36) PRIMARY KEY, [42001-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_SENDER_ID_C[*] VARCHAR(36) NOT NULL,"; expected "MERGE"; SQL statement:
+
+        MSG_SENDER_ID_C VARCHAR(36) NOT NULL, [42001-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_RECEIVER_ID_C[*] VARCHAR(36) NOT NULL,"; expected "MERGE"; SQL statement:
+
+        MSG_RECEIVER_ID_C VARCHAR(36) NOT NULL, [42001-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_CONTENT_C[*] TEXT NOT NULL,"; expected "MERGE"; SQL statement:
+
+        MSG_CONTENT_C TEXT NOT NULL, [42001-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_CREATEDATE_D[*] TIMESTAMP NOT NULL,"; expected "MERGE"; SQL statement:
+
+        MSG_CREATEDATE_D TIMESTAMP NOT NULL, [42001-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_READ_B[*] BOOLEAN NOT NULL DEFAULT FALSE,"; expected "MERGE"; SQL statement:
+
+        MSG_READ_B BOOLEAN NOT NULL DEFAULT FALSE, [42001-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        FOREIGN[*] KEY (MSG_SENDER_ID_C) REFERENCES T_USER(USE_ID_C),"; SQL statement:
+
+        FOREIGN KEY (MSG_SENDER_ID_C) REFERENCES T_USER(USE_ID_C), [42000-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        FOREIGN[*] KEY (MSG_RECEIVER_ID_C) REFERENCES T_USER(USE_ID_C)"; SQL statement:
+
+        FOREIGN KEY (MSG_RECEIVER_ID_C) REFERENCES T_USER(USE_ID_C) [42000-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    )[*];"; SQL statement:
+
+    ); [42000-199]
+2025-05-13 01:29:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    CREATE INDEX IDX_CHAT_MSG_SENDER ON T_CHAT_MESSAGE(MSG_SENDER_ID_C); [42102-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    CREATE INDEX IDX_CHAT_MSG_RECEIVER ON T_CHAT_MESSAGE(MSG_RECEIVER_ID_C); [42102-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    CREATE INDEX IDX_CHAT_MSG_DATE ON T_CHAT_MESSAGE(MSG_CREATEDATE_D); [42102-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    CREATE TABLE T_USER_REQUEST (
+         [*]"; expected "identifier"; SQL statement:
+
+    create table T_USER_REQUEST (
+         [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_ID_C[*] VARCHAR(36) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_ID_C varchar(36) not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_USERNAME_C[*] VARCHAR(50) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_USERNAME_C varchar(50) not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_EMAIL_C[*] VARCHAR(100) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_EMAIL_C varchar(100) not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_PASSWORD_C[*] VARCHAR(100) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_PASSWORD_C varchar(100) not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_STATUS_C[*] VARCHAR(1) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_STATUS_C varchar(1) not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_CREATEDATE_D[*] DATETIME NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_CREATEDATE_D datetime not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_PROCESSDATE_D[*] DATETIME, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_PROCESSDATE_D datetime, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_PROCESSUSERID_C[*] VARCHAR(36), "; expected "UPDATE, USE"; SQL statement:
+
+        URE_PROCESSUSERID_C varchar(36), [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        PRIMARY[*] KEY (URE_ID_C) "; SQL statement:
+
+        primary key (URE_ID_C) [42000-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    )[*];"; SQL statement:
+
+    ); [42000-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    CREATE CACHED TABLE T_CHAT_MESSAGE ( [*]"; expected "identifier"; SQL statement:
+
+    create cached table T_CHAT_MESSAGE ( [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_ID_C[*] VARCHAR(36) NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_ID_C varchar(36) not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_SENDER_USERNAME_C[*] VARCHAR(50) NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_SENDER_USERNAME_C varchar(50) not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_RECEIVER_USERNAME_C[*] VARCHAR(50) NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_RECEIVER_USERNAME_C varchar(50) not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_CONTENT_C[*] VARCHAR(4000) NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_CONTENT_C varchar(4000) not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_CREATEDATE_D[*] DATETIME NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_CREATEDATE_D datetime not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_READ_B[*] BIT NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_READ_B bit not null, [42001-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        PRIMARY[*] KEY (MSG_ID_C) "; SQL statement:
+
+        primary key (MSG_ID_C) [42000-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    )[*];"; SQL statement:
+
+    ); [42000-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    create index IDX_MSG_SENDER_USERNAME_C 
+       on T_CHAT_MESSAGE (MSG_SENDER_USERNAME_C); [42102-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    create index IDX_MSG_RECEIVER_USERNAME_C 
+       on T_CHAT_MESSAGE (MSG_RECEIVER_USERNAME_C); [42102-199]
+2025-05-13 01:29:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    create index IDX_MSG_CREATEDATE_D 
+       on T_CHAT_MESSAGE (MSG_CREATEDATE_D); [42102-199]
+2025-05-13 10:38:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CONFIG" not found; SQL statement:
+select c.CFG_VALUE_C from T_CONFIG c where c.CFG_ID_C='DB_VERSION' [42102-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    CREATE TABLE T_CHAT_MESSAGE (
+        [*]"; expected "identifier"; SQL statement:
+
+    CREATE TABLE T_CHAT_MESSAGE (
+         [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_ID_C[*] VARCHAR(36) PRIMARY KEY,"; expected "MERGE"; SQL statement:
+
+        MSG_ID_C VARCHAR(36) PRIMARY KEY, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_SENDER_ID_C[*] VARCHAR(36) NOT NULL,"; expected "MERGE"; SQL statement:
+
+        MSG_SENDER_ID_C VARCHAR(36) NOT NULL, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_RECEIVER_ID_C[*] VARCHAR(36) NOT NULL,"; expected "MERGE"; SQL statement:
+
+        MSG_RECEIVER_ID_C VARCHAR(36) NOT NULL, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_CONTENT_C[*] TEXT NOT NULL,"; expected "MERGE"; SQL statement:
+
+        MSG_CONTENT_C TEXT NOT NULL, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_CREATEDATE_D[*] TIMESTAMP NOT NULL,"; expected "MERGE"; SQL statement:
+
+        MSG_CREATEDATE_D TIMESTAMP NOT NULL, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_READ_B[*] BOOLEAN NOT NULL DEFAULT FALSE,"; expected "MERGE"; SQL statement:
+
+        MSG_READ_B BOOLEAN NOT NULL DEFAULT FALSE, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        FOREIGN[*] KEY (MSG_SENDER_ID_C) REFERENCES T_USER(USE_ID_C),"; SQL statement:
+
+        FOREIGN KEY (MSG_SENDER_ID_C) REFERENCES T_USER(USE_ID_C), [42000-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        FOREIGN[*] KEY (MSG_RECEIVER_ID_C) REFERENCES T_USER(USE_ID_C)"; SQL statement:
+
+        FOREIGN KEY (MSG_RECEIVER_ID_C) REFERENCES T_USER(USE_ID_C) [42000-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    )[*];"; SQL statement:
+
+    ); [42000-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    CREATE INDEX IDX_CHAT_MSG_SENDER ON T_CHAT_MESSAGE(MSG_SENDER_ID_C); [42102-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    CREATE INDEX IDX_CHAT_MSG_RECEIVER ON T_CHAT_MESSAGE(MSG_RECEIVER_ID_C); [42102-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    CREATE INDEX IDX_CHAT_MSG_DATE ON T_CHAT_MESSAGE(MSG_CREATEDATE_D); [42102-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    CREATE TABLE T_USER_REQUEST (
+         [*]"; expected "identifier"; SQL statement:
+
+    create table T_USER_REQUEST (
+         [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_ID_C[*] VARCHAR(36) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_ID_C varchar(36) not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_USERNAME_C[*] VARCHAR(50) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_USERNAME_C varchar(50) not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_EMAIL_C[*] VARCHAR(100) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_EMAIL_C varchar(100) not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_PASSWORD_C[*] VARCHAR(100) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_PASSWORD_C varchar(100) not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_STATUS_C[*] VARCHAR(1) NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_STATUS_C varchar(1) not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_CREATEDATE_D[*] DATETIME NOT NULL, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_CREATEDATE_D datetime not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_PROCESSDATE_D[*] DATETIME, "; expected "UPDATE, USE"; SQL statement:
+
+        URE_PROCESSDATE_D datetime, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        URE_PROCESSUSERID_C[*] VARCHAR(36), "; expected "UPDATE, USE"; SQL statement:
+
+        URE_PROCESSUSERID_C varchar(36), [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        PRIMARY[*] KEY (URE_ID_C) "; SQL statement:
+
+        primary key (URE_ID_C) [42000-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    )[*];"; SQL statement:
+
+    ); [42000-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    CREATE CACHED TABLE T_CHAT_MESSAGE ( [*]"; expected "identifier"; SQL statement:
+
+    create cached table T_CHAT_MESSAGE ( [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_ID_C[*] VARCHAR(36) NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_ID_C varchar(36) not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_SENDER_USERNAME_C[*] VARCHAR(50) NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_SENDER_USERNAME_C varchar(50) not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_RECEIVER_USERNAME_C[*] VARCHAR(50) NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_RECEIVER_USERNAME_C varchar(50) not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_CONTENT_C[*] VARCHAR(4000) NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_CONTENT_C varchar(4000) not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_CREATEDATE_D[*] DATETIME NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_CREATEDATE_D datetime not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        MSG_READ_B[*] BIT NOT NULL, "; expected "MERGE"; SQL statement:
+
+        MSG_READ_B bit not null, [42001-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+        PRIMARY[*] KEY (MSG_ID_C) "; SQL statement:
+
+        primary key (MSG_ID_C) [42000-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "
+    )[*];"; SQL statement:
+
+    ); [42000-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    create index IDX_MSG_SENDER_USERNAME_C 
+       on T_CHAT_MESSAGE (MSG_SENDER_USERNAME_C); [42102-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    create index IDX_MSG_RECEIVER_USERNAME_C 
+       on T_CHAT_MESSAGE (MSG_RECEIVER_USERNAME_C); [42102-199]
+2025-05-13 10:38:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "T_CHAT_MESSAGE" not found; SQL statement:
+
+    create index IDX_MSG_CREATEDATE_D 
+       on T_CHAT_MESSAGE (MSG_CREATEDATE_D); [42102-199]

@@ -136,7 +136,7 @@ public class TestFileUtil extends BaseTest {
             file5.setMimeType(MimeType.OFFICE_PRESENTATION);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            PdfUtil.convertToPdf(documentDto, Lists.newArrayList(file0, file1, file2, file3, file4, file5), true, true, 10, outputStream);
+            PdfUtil.convertToPdf(documentDto, Lists.newArrayList(file0, file1, file2, file3, file4, file5), true, true, 10, outputStream, false, null);
             Assert.assertTrue(outputStream.toByteArray().length > 0);
         }
     }

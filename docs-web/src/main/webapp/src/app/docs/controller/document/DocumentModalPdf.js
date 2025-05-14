@@ -8,17 +8,24 @@ angular.module('docs').controller('DocumentModalPdf', function ($scope, $window,
     metadata: false,
     comments: false,
     fitimagetopage: true,
-    margin: 10
+    margin: 10,
+    translate: false,
+    targetLanguage: 'zh'
   };
 
   // Export to PDF
   $scope.exportPdf = function() {
-    $window.open('../api/document/' + $stateParams.id
+    var url = '../api/document/' + $stateParams.id
         + '/pdf?metadata=' + $scope.export.metadata
         + '&comments=' + $scope.export.comments
         + '&fitimagetopage=' + $scope.export.fitimagetopage
-        + '&margin=' + $scope.export.margin);
-
+        + '&margin=' + $scope.export.margin;
+    
+    if ($scope.export.translate) {
+      url += '&translate=true&target_language=' + $scope.export.targetLanguage;
+    }
+    
+    $window.open(url);
     $uibModalInstance.close();
   };
 

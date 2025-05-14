@@ -456,7 +456,7 @@ angular.module('docs',
       }
     })
     .state('chat.with', {
-      url: '/:userId',
+      url: '/:username',
       views: {
         'chat': {
           templateUrl: 'app/docs/view/chat/chat.html',

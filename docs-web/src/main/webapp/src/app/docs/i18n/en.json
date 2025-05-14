@@ -29,5 +29,32 @@
     "error_username_exists": "This username is already taken.",
     "error_password_length": "Password must be at least 8 characters long.",
     "error_password_mismatch": "Passwords do not match."
+  },
+  "document": {
+    "pdf": {
+      "export_title": "Export to PDF",
+      "export_metadata": "Include metadata",
+      "export_comments": "Include comments",
+      "fit_to_page": "Fit images to page",
+      "margin": "Margin",
+      "millimeter": "mm",
+      "translate": "Translate document",
+      "target_language": "Target language"
+    },
+    "translate": {
+      "title": "Translate Document",
+      "target_language": "Target Language",
+      "include_metadata": "Include Metadata",
+      "include_metadata_help": "Translate document metadata (title, description, etc.)",
+      "pdf_info": "A translated PDF version of the document will be generated and opened in a new tab.",
+      "generate_pdf": "Generate Translated PDF",
+      "success": "Document translated successfully",
+      "error": "Error translating document"
+    },
+    "view": {
+      "content": {
+        "translate_file": "Translate file"
+      }
+    }
   }
 } 

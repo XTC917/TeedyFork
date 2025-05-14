@@ -25,5 +25,32 @@
     "error_title": "错误",
     "error_message": "提交申请时发生错误。",
     "error_username_exists": "该用户名已被使用。"
+  },
+  "document": {
+    "pdf": {
+      "export_title": "导出为PDF",
+      "export_metadata": "包含元数据",
+      "export_comments": "包含评论",
+      "fit_to_page": "图片适应页面",
+      "margin": "页边距",
+      "millimeter": "毫米",
+      "translate": "翻译文档",
+      "target_language": "目标语言"
+    },
+    "translate": {
+      "title": "翻译文档",
+      "target_language": "目标语言",
+      "include_metadata": "包含元数据",
+      "include_metadata_help": "翻译文档标题、描述和其他元数据",
+      "translate": "翻译",
+      "cancel": "取消",
+      "success": "文档翻译成功",
+      "error": "文档翻译失败"
+    },
+    "view": {
+      "content": {
+        "translate_file": "翻译文件"
+      }
+    }
   }
 } 

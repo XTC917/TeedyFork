@@ -6,7 +6,7 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h5>在线用户</h5>
+                    <h5>用户列表</h5>
                 </div>
                 <div class="card-body">
                     <ul class="list-group" id="userList">
@@ -36,34 +36,45 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
-let stompClient = null;
-let currentUser = '${sessionScope.user.id}';
+let currentUser = '${sessionScope.user.username}';
 let selectedUser = null;
 
-function connect() {
-    let socket = new SockJS('/ws');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function(frame) {
-        console.log('Connected: ' + frame);
-        
-        // 订阅个人消息
-        stompClient.subscribe('/user/queue/private', function(message) {
-            showMessage(JSON.parse(message.body));
-        });
-        
-        // 订阅用户列表更新
-        stompClient.subscribe('/topic/users', function(message) {
-            updateUserList(JSON.parse(message.body));
-        });
-        
-        // 获取历史消息
-        stompClient.send("/app/chat.history", {}, currentUser);
-    });
+// 加载用户列表
+function loadUserList() {
+    fetch('/api/users')
+        .then(response => response.json())
+        .then(users => {
+            let userList = document.getElementById('userList');
+            userList.innerHTML = '';
+            users.forEach(user => {
+                if (user.username !== currentUser) {
+                    let li = document.createElement('li');
+                    li.className = 'list-group-item user-item';
+                    li.innerHTML = user.username;
+                    li.onclick = () => selectUser(user.username);
+                    userList.appendChild(li);
+                }
+            });
+        })
+        .catch(error => console.error('Error loading users:', error));
 }
 
+// 加载消息
+function loadMessages() {
+    if (!selectedUser) return;
+    
+    fetch(`/api/chat/messages?username1=${currentUser}&username2=${selectedUser}`)
+        .then(response => response.json())
+        .then(messages => {
+            let chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML = '';
+            messages.forEach(message => showMessage(message));
+        })
+        .catch(error => console.error('Error loading messages:', error));
+}
+
+// 发送消息
 function sendMessage() {
     if (!selectedUser) {
         alert('请先选择一个用户');
@@ -74,22 +85,33 @@ function sendMessage() {
     let content = messageInput.value.trim();
     
     if (content) {
-        stompClient.send("/app/chat.send", {}, JSON.stringify({
-            'senderId': currentUser,
-            'receiverId': selectedUser,
-            'content': content
-        }));
+        fetch('/api/chat/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                senderUsername: currentUser,
+                receiverUsername: selectedUser,
+                content: content
+            })
+        })
+        .then(response => response.json())
+        .then(() => {
         messageInput.value = '';
+            loadMessages(); // 重新加载消息
+        })
+        .catch(error => console.error('Error sending message:', error));
     }
 }
 
 function showMessage(message) {
     let chatMessages = document.getElementById('chatMessages');
     let messageElement = document.createElement('div');
-    messageElement.className = 'message ' + (message.senderId === currentUser ? 'sent' : 'received');
+    messageElement.className = 'message ' + (message.senderUsername === currentUser ? 'sent' : 'received');
     messageElement.innerHTML = `
         <div class="message-content">
-            <strong>${message.senderId === currentUser ? '我' : '对方'}</strong>
+            <strong>${message.senderUsername === currentUser ? '我' : '对方'}</strong>
             <p>${message.content}</p>
             <small>${new Date(message.createDate).toLocaleString()}</small>
         </div>
@@ -98,28 +120,17 @@ function showMessage(message) {
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-function updateUserList(users) {
-    let userList = document.getElementById('userList');
-    userList.innerHTML = '';
-    users.forEach(user => {
-        if (user.id !== currentUser) {
-            let li = document.createElement('li');
-            li.className = 'list-group-item user-item';
-            li.innerHTML = user.username;
-            li.onclick = () => selectUser(user.id);
-            userList.appendChild(li);
-        }
-    });
-}
-
-function selectUser(userId) {
-    selectedUser = userId;
+function selectUser(username) {
+    selectedUser = username;
     document.getElementById('chatMessages').innerHTML = '';
-    stompClient.send("/app/chat.history", {}, currentUser);
+    loadMessages();
 }
 
-// 连接WebSocket
-connect();
+// 初始化
+loadUserList();
+
+// 定期刷新消息
+setInterval(loadMessages, 3000);
 
 // 绑定发送按钮事件
 document.getElementById('sendButton').onclick = sendMessage;

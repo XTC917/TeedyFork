@@ -34,6 +34,7 @@ import com.sismics.docs.core.util.DocumentUtil;
 import com.sismics.docs.core.util.FileUtil;
 import com.sismics.docs.core.util.MetadataUtil;
 import com.sismics.docs.core.util.PdfUtil;
+import com.sismics.docs.core.util.TranslationService;
 import com.sismics.docs.core.util.jpa.PaginatedList;
 import com.sismics.docs.core.util.jpa.PaginatedLists;
 import com.sismics.docs.core.util.jpa.SortCriteria;
@@ -297,6 +298,8 @@ public class DocumentResource extends BaseResource {
      * @apiParam {Boolean} metadata If true, export metadata
      * @apiParam {Boolean} fitimagetopage If true, fit the images to pages
      * @apiParam {Number} margin Margin around the pages, in millimeter
+     * @apiParam {Boolean} translate If true, translate the document
+     * @apiParam {String} target_language Target language for translation
      * @apiSuccess {String} pdf The whole response is the PDF file
      * @apiError (client) NotFound Document not found
      * @apiError (client) ValidationError Validation error
@@ -308,6 +311,8 @@ public class DocumentResource extends BaseResource {
      * @param metadata Export metadata
      * @param fitImageToPage Fit images to page
      * @param marginStr Margins
+     * @param translate Translate
+     * @param targetLanguage Target language
      * @return Response
      */
     @GET
@@ -317,11 +322,19 @@ public class DocumentResource extends BaseResource {
             @QueryParam("share") String shareId,
             final @QueryParam("metadata") Boolean metadata,
             final @QueryParam("fitimagetopage") Boolean fitImageToPage,
-            @QueryParam("margin") String marginStr) {
+            @QueryParam("margin") String marginStr,
+            @QueryParam("translate") Boolean translate,
+            @QueryParam("target_language") String targetLanguage) {
         authenticate();
 
         // Validate input
         final int margin = ValidationUtil.validateInteger(marginStr, "margin");
+        if (translate == null) {
+            translate = false;
+        }
+        if (translate && (targetLanguage == null || targetLanguage.trim().isEmpty())) {
+            throw new ClientException("ValidationError", "Target language is required when translation is enabled");
+        }
 
         // Get document and check read permission
         DocumentDao documentDao = new DocumentDao();
@@ -342,9 +355,11 @@ public class DocumentResource extends BaseResource {
         }
 
         // Convert to PDF
+        final boolean finalTranslate = translate;
+        final String finalTargetLanguage = targetLanguage;
         StreamingOutput stream = outputStream -> {
             try {
-                PdfUtil.convertToPdf(documentDto, fileList, fitImageToPage, metadata, margin, outputStream);
+                PdfUtil.convertToPdf(documentDto, fileList, fitImageToPage, metadata, margin, outputStream, finalTranslate, finalTargetLanguage);
             } catch (Exception e) {
                 throw new IOException(e);
             }
@@ -1096,5 +1111,74 @@ public class DocumentResource extends BaseResource {
                     .add("color", tagDto.getColor()));
         }
         return tags;
+    }
+
+    /**
+     * Translate a document.
+     *
+     * @param documentId Document ID
+     * @param targetLanguage Target language code
+     * @param includeMetadata Whether to include metadata in translation
+     * @return Response
+     */
+    @POST
+    @Path("{documentId: [a-z0-9\\-]+}/translate")
+    public Response translateDocument(
+            @PathParam("documentId") String documentId,
+            @FormParam("target_language") String targetLanguage,
+            @FormParam("include_metadata") Boolean includeMetadata) {
+        if (!authenticate()) {
+            throw new ForbiddenClientException();
+        }
+
+        // Validate parameters
+        if (targetLanguage == null) {
+            throw new ClientException("ValidationError", "target_language is required");
+        }
+
+        // Get the document
+        DocumentDao documentDao = new DocumentDao();
+        Document document = documentDao.getById(documentId);
+        if (document == null) {
+            throw new NotFoundException();
+        }
+
+        // Check if the user has access to the document
+        AclDao aclDao = new AclDao();
+        if (!aclDao.checkPermission(documentId, PermType.WRITE, getTargetIdList(null))) {
+            throw new ForbiddenClientException();
+        }
+
+        // Translate the document
+        try {
+            // Get document content
+            String content = document.getDescription();
+            
+            // Translate content
+            String translatedContent = TranslationService.getInstance().translateText(content, document.getLanguage(), targetLanguage);
+            
+            // Update document with translated content
+            document.setDescription(translatedContent);
+            
+            // Translate metadata if requested
+            if (includeMetadata != null && includeMetadata) {
+                String title = document.getTitle();
+                if (title != null) {
+                    document.setTitle(TranslationService.getInstance().translateText(title, document.getLanguage(), targetLanguage));
+                }
+                
+                String subject = document.getSubject();
+                if (subject != null) {
+                    document.setSubject(TranslationService.getInstance().translateText(subject, document.getLanguage(), targetLanguage));
+                }
+            }
+            
+            // Save the document
+            documentDao.update(document, principal.getId());
+            
+            return Response.ok().build();
+        } catch (Exception e) {
+            throw new ServerException("TranslationError", "Error translating document: " + e.getMessage(), e);
+        }
     }
 }
