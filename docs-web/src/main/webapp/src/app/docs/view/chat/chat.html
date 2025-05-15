@@ -36,8 +36,16 @@
             </div>
             <div ng-repeat="message in messages" 
                  class="message" 
-                 ng-class="{'message-sent': message.senderId === currentUser.username, 'message-received': message.senderId !== currentUser.username}">
-                <div class="message-content">{{message.content}}</div>
+                 ng-class="{'message-sent': message.senderUsername === currentUser.username, 'message-received': message.senderUsername !== currentUser.username}">
+                <div class="message-content">
+                    {{message.content}}
+                    <button ng-if="message.senderUsername === currentUser.username" 
+                            class="delete-message" 
+                            ng-click="deleteMessage(message.id)"
+                            title="删除消息">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
                 <div class="message-time">{{message.createDate | date:'short'}}</div>
             </div>
         </div>
@@ -149,6 +157,7 @@
     margin-bottom: 4px;
     word-wrap: break-word;
     line-height: 1.4;
+    position: relative;
 }
 
 .message-sent .message-content {
@@ -275,5 +284,35 @@
     color: #721c24;
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
+}
+
+.delete-message {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    font-size: 14px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 1;
+    text-align: center;
+    display: none;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.message-content:hover .delete-message {
+    display: block;
+}
+
+.delete-message:hover {
+    background-color: rgba(220, 53, 69, 0.8);
+    color: white;
+    transform: scale(1.1);
 }
 </style> 

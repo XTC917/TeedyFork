@@ -2,10 +2,12 @@
 
 angular.module('docs').controller('ChatController', function($scope, $rootScope, $stateParams, Restangular, $interval, $state) {
     var messagePollingInterval;
+    let prevCount = 0;
     $scope.messages = [];
     $scope.newMessage = '';
     $scope.error = null;
     $scope.loading = true;
+    $scope.currentUser = $rootScope.userInfo;
 
     // 获取当前登录用户信息
     if (!$rootScope.userInfo) {
@@ -76,25 +78,17 @@ angular.module('docs').controller('ChatController', function($scope, $rootScope,
             username2: $scope.targetUser.username
         });
 
-        $scope.loading = true;
+        $scope.loading = false;
         Restangular.one('chat/messages').get({
             username1: currentUser.username,
             username2: $scope.targetUser.username
         })
-        .then(function(response) {
-            console.log('Messages loaded successfully:', {
-                count: response.length,
-                messages: response.map(msg => ({
-                    id: msg.id,
-                    senderUsername: msg.senderUsername,
-                    receiverUsername: msg.receiverUsername,
-                    content: msg.content,
-                    createDate: msg.createDate,
-                    read: msg.read
-                }))
-            });
-            $scope.messages = response;
-            $scope.error = null;
+        .then(function(data) {
+            if (data.chatMessages.length > prevCount) {
+                const newMessages = data.chatMessages.slice(prevCount);
+                $scope.messages.push(...newMessages);
+                prevCount = data.chatMessages.length
+            }
             scrollToBottom();
         })
         .catch(function(error) {
@@ -107,7 +101,6 @@ angular.module('docs').controller('ChatController', function($scope, $rootScope,
             $scope.error = '加载消息失败';
         })
         .finally(function() {
-            $scope.loading = false;
         });
     }
 
@@ -143,13 +136,14 @@ angular.module('docs').controller('ChatController', function($scope, $rootScope,
 
         console.log('Sending message:', message);
 
-        Restangular.all('chat/send')
-            .post(message)
+        Restangular.one('chat')
+            .post('send', message)
             .then(function(response) {
                 console.log('Message sent successfully:', response);
                 $scope.newMessage = '';
                 $scope.error = null;
                 loadMessages(); // 立即刷新消息列表
+                scrollToBottom();
             })
             .catch(function(error) {
                 console.error('Error sending message:', {
@@ -159,6 +153,47 @@ angular.module('docs').controller('ChatController', function($scope, $rootScope,
                     config: error.config
                 });
                 $scope.error = '发送消息失败';
+            });
+    };
+    
+    // 删除消息
+    $scope.deleteMessage = function(messageId) {
+        if (!messageId) {
+            console.error('Cannot delete message - messageId is undefined');
+            return;
+        }
+        
+        console.log('Deleting message with ID:', messageId);
+        
+        Restangular.one('chat/delete', messageId)
+            .remove({ username: currentUser.username })
+            .then(function(response) {
+                console.log('Message deleted successfully:', response);
+                
+                // 从本地消息列表中移除已删除的消息
+                $scope.messages = $scope.messages.filter(function(message) {
+                    return message.id !== messageId;
+                });
+                
+                // 如果删除后没有消息，减少预计消息数
+                prevCount = $scope.messages.length;
+                
+                $scope.error = null;
+            })
+            .catch(function(error) {
+                console.error('Error deleting message:', {
+                    error: error,
+                    status: error.status,
+                    data: error.data,
+                    config: error.config
+                });
+                
+                // 显示错误消息
+                if (error.data && error.data.message) {
+                    $scope.error = error.data.message;
+                } else {
+                    $scope.error = '删除消息失败';
+                }
             });
     };
 

@@ -1,25 +1,20 @@
 package com.sismics.docs.core.service;
 
 import com.sismics.docs.core.model.entity.ChatMessage;
+import com.sismics.util.context.ThreadLocalContext;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-@Service
 public class ChatService {
     private static final Logger log = LoggerFactory.getLogger(ChatService.class);
 
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em= ThreadLocalContext.get().getEntityManager();
 
-    @Transactional
     public ChatMessage sendMessage(String senderUsername, String receiverUsername, String content) {
         ChatMessage message = new ChatMessage();
         message.setId(UUID.randomUUID().toString());
@@ -33,7 +28,6 @@ public class ChatService {
         return message;
     }
 
-    @Transactional(readOnly = true)
     public List<ChatMessage> getMessages(String username1, String username2) {
         if (username1 == null || username2 == null) {
             throw new IllegalArgumentException("Username parameters cannot be null");
@@ -77,7 +71,6 @@ public class ChatService {
         }
     }
 
-    @Transactional
     public void createWelcomeMessage(String username1, String username2) {
         try {
             ChatMessage welcomeMessage = new ChatMessage();
@@ -97,7 +90,6 @@ public class ChatService {
         }
     }
 
-    @Transactional
     public void markAsRead(String messageId) {
         try {
         ChatMessage message = em.find(ChatMessage.class, messageId);
@@ -111,6 +103,29 @@ public class ChatService {
         } catch (Exception e) {
             log.error("Error marking message as read: {}", messageId, e);
             throw new RuntimeException("Failed to mark message as read: " + e.getMessage(), e);
+        }
+    }
+    
+    public boolean deleteMessage(String messageId, String username) {
+        try {
+            ChatMessage message = em.find(ChatMessage.class, messageId);
+            if (message != null) {
+                // 只允许消息发送者删除自己的消息
+                if (message.getSenderUsername().equals(username)) {
+                    em.remove(message);
+                    log.info("Message {} deleted by user {}", messageId, username);
+                    return true;
+                } else {
+                    log.warn("User {} attempted to delete message {} which they did not send", username, messageId);
+                    return false;
+                }
+            } else {
+                log.warn("Message {} not found for deletion", messageId);
+                return false;
+            }
+        } catch (Exception e) {
+            log.error("Error deleting message: {}", messageId, e);
+            throw new RuntimeException("Failed to delete message: " + e.getMessage(), e);
         }
     }
 } 
